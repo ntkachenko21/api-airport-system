@@ -1,5 +1,6 @@
-from django.conf.global_settings import AUTH_USER_MODEL
 from django.db import models
+
+from config import settings
 
 
 class Airport(models.Model):
@@ -82,7 +83,7 @@ class Flight(models.Model):
 class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(
-        AUTH_USER_MODEL,
+        settings.AUTH_USER_MODEL,
         blank=False,
         on_delete=models.CASCADE,
         related_name="orders",
