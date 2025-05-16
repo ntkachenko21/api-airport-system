@@ -45,12 +45,18 @@ class AirplaneTypeSerializer(serializers.ModelSerializer):
         fields = ("id", "name",)
 
 
+class AirplaneTypeRetrieveSerializer(AirplaneTypeSerializer):
+    pass
+
+
 class AirplaneSerializer(serializers.ModelSerializer):
-    airplane_type = AirplaneTypeSerializer(many=False)
+    airplane_type = serializers.PrimaryKeyRelatedField(
+        queryset=AirplaneType.objects.all(),
+    )
 
     class Meta:
         model = Airplane
-        fields = ("id", "name", "rows", "seat_in_row", "airplane_type",)
+        fields = ("id", "name", "rows", "seats_in_row", "airplane_type",)
 
 
 class CrewSerializer(serializers.ModelSerializer):

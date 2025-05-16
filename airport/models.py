@@ -40,7 +40,7 @@ class AirplaneType(models.Model):
 
 
 class Airplane(models.Model):
-    name = models.CharField(max_length=255, null=False, blank=False)
+    name = models.CharField(max_length=255, null=False, blank=False, unique=True)
     rows = models.PositiveIntegerField()
     seats_in_row = models.PositiveIntegerField()
     airplane_type = models.ForeignKey(
